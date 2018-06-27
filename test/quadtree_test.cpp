@@ -17,13 +17,13 @@ TEST_CASE("init inner" COMMON_TEXT, COMMON_TAGS)
 	int center = 1;
 
 	REQUIRE(root.child(0)->area.tl() == Point2d(center, top));
-	REQUIRE(root.child(0)->area.br() == Point2d(right, bottom));
+	REQUIRE(root.child(0)->area.br() == Point2d(right, center));
 	REQUIRE(root.child(1)->area.tl() == Point2d(left, top));
 	REQUIRE(root.child(1)->area.br() == Point2d(center, center));
-	REQUIRE(root.child(2)->area.tl() == Point2d(left, center));
-	REQUIRE(root.child(2)->area.br() == Point2d(center, bottom));
-	REQUIRE(root.child(3)->area.tl() == Point2d(center, center));
-	REQUIRE(root.child(3)->area.br() == Point2d(right, bottom));
+	REQUIRE(root.child(2)->area.tl() == Point2d(center, center));
+	REQUIRE(root.child(2)->area.br() == Point2d(right, bottom));
+	REQUIRE(root.child(3)->area.tl() == Point2d(left, center));
+	REQUIRE(root.child(3)->area.br() == Point2d(center, bottom));
 }
 
 TEST_CASE("parent" COMMON_TEXT, COMMON_TAGS)
@@ -45,8 +45,8 @@ TEST_CASE("parent" COMMON_TEXT, COMMON_TAGS)
 
 TEST_CASE("get index" COMMON_TEXT, COMMON_TAGS)
 {
-	quadtree<> root(cv::Rect2d(0, 0, 2, 2));
-	root.insert_block(0.4, 0.4, 5, false);
+	quadtree<> root(cv::Rect2d(0, 0, 1, 1));
+	root.insert_block(0.4, 0.4, 1, false);
 
 	REQUIRE(root.is_have_child());
 	REQUIRE(root.get_side(0.4, 0.4)->get_loc() == 1);
